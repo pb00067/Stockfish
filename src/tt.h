@@ -43,7 +43,7 @@ struct TTEntry {
   Bound bound() const { return (Bound)(genBound8 & 0x3); }
 
   void save(Key k, Value v, Bound b, Depth d, Move m, Value ev, uint8_t g) {
-	  save(k, v, b, d, m, ev, g, 4);
+	  save(k, v, b, d, m, ev, g, 2);
   }
 
   void save(Key k, Value v, Bound b, Depth d, Move m, Value ev, uint8_t g, int depthMargin) {
