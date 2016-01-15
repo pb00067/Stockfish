@@ -1152,10 +1152,14 @@ moves_loop: // When in check search starts from here
         prevCmh.update(pos.piece_on(prevSq), prevSq, bonus);
     }
 
+    int margin = 2;
+    if (thisThread == Threads.main() && Threads.size() > 1)
+        margin = 4;
+
     tte->save(posKey, value_to_tt(bestValue, ss->ply),
               bestValue >= beta ? BOUND_LOWER :
               PvNode && bestMove ? BOUND_EXACT : BOUND_UPPER,
-              depth, bestMove, ss->staticEval, TT.generation());
+              depth, bestMove, ss->staticEval, TT.generation(), margin);
 
     assert(bestValue > -VALUE_INFINITE && bestValue < VALUE_INFINITE);
 
