@@ -329,15 +329,15 @@ void MainThread::search() {
 
   // Check if there are threads with a better score than main thread
   Thread* bestThread = this;
-  if (   !this->easyMovePlayed
-      &&  Options["MultiPV"] == 1
-      && !Skill(Options["Skill Level"]).enabled())
-  {
-      for (Thread* th : Threads)
-          if (   th->completedDepth > bestThread->completedDepth
-              && th->rootMoves[0].score > bestThread->rootMoves[0].score)
-              bestThread = th;
-  }
+//  if (   !this->easyMovePlayed
+//      &&  Options["MultiPV"] == 1
+//      && !Skill(Options["Skill Level"]).enabled())
+//  {
+//      for (Thread* th : Threads)
+//          if (   th->completedDepth > bestThread->completedDepth
+//              && th->rootMoves[0].score > bestThread->rootMoves[0].score)
+//              bestThread = th;
+//  }
 
   previousMoveScore = bestThread->rootMoves[0].score;
 
