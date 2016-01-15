@@ -328,16 +328,12 @@ void MainThread::search() {
           th->wait_for_search_finished();
 
   // Check if there are threads with a better score than main thread
-  Thread* bestThread = this;
-  if (   !this->easyMovePlayed
-      &&  Options["MultiPV"] == 1
-      && !Skill(Options["Skill Level"]).enabled())
-  {
+  Thread* bestThread = NULL;
+
       for (Thread* th : Threads)
-          if (   th->completedDepth > bestThread->completedDepth
-              && th->rootMoves[0].score > bestThread->rootMoves[0].score)
+          if ( th->idx == Threads.size() - 1)
               bestThread = th;
-  }
+
 
   previousMoveScore = bestThread->rootMoves[0].score;
 
